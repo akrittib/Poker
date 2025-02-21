@@ -1,6 +1,8 @@
-cabal install Random
+module Main where
+
 import System.Random
 import System.Random.Shuffle
+
 
 data Suit = Hearts | Diamonds | Spades | Clubs deriving (Show, Eq, Enum, Ord)
 data Rank = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten | Jack | Queen | King | Ace deriving (Show, Eq, Enum, Ord)
@@ -13,8 +15,8 @@ deck = [Card rank suit | rank <- [Two .. Ace], suit <- [Hearts .. Clubs]]
 shuffleDeck :: IO [Card]
 shuffleDeck = shuffleM deck 
 
-deal :: [Card] -> ([Card], [Card])
-deal n deal = (take n deal, drop n deal)
+deal :: Int -> [Card] -> ([Card], [Card])
+deal n deck = (take n deck, drop n deck)
 
 data HandRank = 
     HighCard 
@@ -29,7 +31,7 @@ data HandRank =
     | RoyalFlush deriving (Show, Eq, Ord)
 
 evaluateHand :: [Card] -> HandRank
-evaluateHand cards = --Implement logic for ranking hands
+evaluateHand cards = HighCard -- Placeholder for actual hand evaluation logic
 
 data Action = 
      Fold 
@@ -47,7 +49,7 @@ main = do
     print player1Hand
     putStrLn "Player 2's Hand:"
     print player2Hand
-
-
-
- 
+    putStrLn "Player 1's Hand Rank:"
+    print (evaluateHand player1Hand)
+    putStrLn "Player 2's Hand Rank:"
+    print (evaluateHand player2Hand)
