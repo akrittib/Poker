@@ -1,7 +1,7 @@
 module Main where
 
-import Random
-import Random.Shuffle
+import System.Random
+import System.Random.Shuffle
 import Data.List (sort, group, sortBy)
 
 data Suit = Hearts | Diamonds | Spades | Clubs deriving (Show, Eq, Enum, Ord)
